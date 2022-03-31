@@ -61,4 +61,11 @@ public class LinkedList {
             newNode.next = temp;
         }
 	}
+	
+	public void pop(){
+        if(head == null){
+            System.out.println("List is empty");
+        }
+        head = head.next;
+    }
 }
