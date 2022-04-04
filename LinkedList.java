@@ -22,22 +22,21 @@ public class LinkedList {
 		newNode.next = null;
 		if (size == 0) {
 			head = tail = newNode;
-		}
-		else {
+		} else {
 			tail.next = newNode;
 			tail = newNode;
 		}
 		size++;
 	}
 
-	public void show(){
+	public void show() {
 		Node temp = head;
 		System.out.print("LinkedList: ");
-		if(head == null) {
+		if (head == null) {
 			System.out.println("List is empty");
 		}
-		while(temp != null){
-			System.out.print(temp.data+" --> ");
+		while (temp != null) {
+			System.out.print(temp.data + " --> ");
 			temp = temp.next;
 		}
 		System.out.print(temp);
@@ -63,57 +62,79 @@ public class LinkedList {
 		}
 	}
 
-	public void pop(){
-		if(head == null){
+	public void pop() {
+		if (head == null) {
 			System.out.println("List is empty");
 		}
 		head = head.next;
 	}
 
-	public void popLast(){
-		if(head == null){
+	public void popLast() {
+		if (head == null) {
 			System.out.println("List is empty");
 			return;
 		}
-		if(head.next == null){
+		if (head.next == null) {
 			head = null;
 			return;
 		}
 		Node secondLast = head;
 		Node lastNode = head.next;
-		while (lastNode.next != null){
+		while (lastNode.next != null) {
 			lastNode = lastNode.next;
 			secondLast = secondLast.next;
 		}
 		secondLast.next = null;
-	}	
+	}
 
 	public boolean searchNode(int data) {
-        if (head == null) {
-            System.out.println("List is empty");
-            return false;
-        }
-        Node currNode = head;
-        while (currNode.data != data) {
-            if (currNode.next == null) {
-                return false;
-            }
-            currNode = currNode.next;
-        }
-        System.out.println("Search found for "+data);
-        return true;
-    }
+		if (head == null) {
+			System.out.println("List is empty");
+			return false;
+		}
+		Node currNode = head;
+		while (currNode.data != data) {
+			if (currNode.next == null) {
+				return false;
+			}
+			currNode = currNode.next;
+		}
+		System.out.println("Search found for " + data);
+		return true;
+	}
 
-    public void insertAfterSearch(int element, int data){
-        Node currNode = head;
-        if (searchNode(element)) {
-            while (currNode.data != element) {
-                currNode = currNode.next;
-            }
-            Node node1 = new Node(data);
-            Node temp = currNode.next;
-            currNode.next = node1;
-            node1.next = temp;
-        }
-    }
+	public void insertAfterSearch(int element, int data) {
+		Node currNode = head;
+		if (searchNode(element)) {
+			while (currNode.data != element) {
+				currNode = currNode.next;
+			}
+			Node node1 = new Node(data);
+			Node temp = currNode.next;
+			currNode.next = node1;
+			node1.next = temp;
+		}
+		size++;
+	}
+
+	public void deleteAfterSearch(int data) {
+		if (searchNode(data)) {
+			if (head.data == data) {
+				head = head.next;
+				return;
+			}
+			Node currNode = head;
+			while (currNode.next.data != data) {
+				currNode = currNode.next;
+			}
+			Node temp = currNode.next.next;
+			currNode.next = temp;
+		}
+		size--;
+	}
+
+	public int getSize() {
+		System.out.println();
+		return size;
+	}
 }
