@@ -137,4 +137,20 @@ public class LinkedList {
 		System.out.println();
 		return size;
 	}
+
+	void sortedInsert(int data) {
+		Node newNode = new Node(data);
+		Node current;
+		if (head == null || head.data >= newNode.data) {
+			newNode.next = head;
+			head = newNode;
+		} else {
+			current = head;
+			while (current.next != null && current.next.data < newNode.data)
+				current = current.next;
+			newNode.next = current.next;
+			current.next = newNode;
+		}
+		size++;
+	}
 }
